@@ -8,4 +8,4 @@ site = { bucket = "./dist" }
 
 [build]
 command = "npm run build"
-watch_dir = "dist"
+watch_dir = "/dist"

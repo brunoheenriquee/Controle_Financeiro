@@ -1,0 +1,10 @@
+name = "controle-financeiro"
+type = "javascript"
+account_id = "YOUR_ACCOUNT_ID"
+workers_dev = true
+compatibility_date = "2026-07-07"
+site = { bucket = "./dist" }
+
+[build]
+command = "npm run build"
+watch_dir = "dist"

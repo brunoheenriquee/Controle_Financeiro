@@ -1,0 +1,1 @@
+export function renderHistorico(el){el.innerHTML='<h2>Histórico</h2>';}

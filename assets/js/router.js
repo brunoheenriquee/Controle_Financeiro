@@ -1,0 +1,1 @@
+import {renderHome} from './pages/home.js';export function router(){renderHome(document.getElementById('app'));}

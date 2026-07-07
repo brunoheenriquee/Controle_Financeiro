@@ -1,0 +1,1 @@
+export function renderCategorias(el){el.innerHTML='<h2>Categorias</h2>';}

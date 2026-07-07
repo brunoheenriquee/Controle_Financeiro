@@ -1,4 +1,4 @@
-import { copyFile, mkdir, rm } from 'node:fs/promises';
+import { copyFile, mkdir, rm, stat } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -28,16 +28,66 @@ async function copyDir(src, dest) {
   }
 }
 
+async function exists(path) {
+  try {
+    await stat(path);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function candidatesFor(file) {
+  // prefer root, then public, then backup
+  return [
+    join(root, file),
+    join(root, 'public', file),
+    join(root, 'backup_root_before_cleanup', file)
+  ];
+}
+
+function candidatesForDir(dir) {
+  return [
+    join(root, dir),
+    join(root, 'public', dir),
+    join(root, 'backup_root_before_cleanup', dir)
+  ];
+}
+
 async function build() {
   await rm(dist, { recursive: true, force: true });
   await mkdir(dist, { recursive: true });
 
   for (const file of files) {
-    await copyFile(join(root, file), join(dist, file));
+    const cands = candidatesFor(file);
+    let found = false;
+    for (const src of cands) {
+      if (await exists(src)) {
+        await copyFile(src, join(dist, file));
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      throw new Error(`Required file not found: ${file}. Tried: ${cands.join(', ')}`);
+    }
   }
 
   for (const dir of copyDirs) {
-    await copyDir(join(root, dir), join(dist, dir));
+    const cands = candidatesForDir(dir);
+    let foundDir = null;
+    for (const src of cands) {
+      if (await exists(src)) {
+        foundDir = src;
+        break;
+      }
+    }
+    if (foundDir) {
+      await copyDir(foundDir, join(dist, dir));
+    } else {
+      // not fatal, but warn
+      console.warn(`Directory not found, skipping: ${dir}. Tried: ${cands.join(', ')}`);
+    }
   }
 
   console.log('Static site built to', dist);

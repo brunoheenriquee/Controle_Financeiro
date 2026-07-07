@@ -2,5 +2,5 @@
     "name":"FinanceHub365",
     "short_name":"Controle Financeiro",
     "display":"standalone",
-    "start_url":"./public/index.html"
+    "start_url":"./index.html"
 }

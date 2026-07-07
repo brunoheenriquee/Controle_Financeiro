@@ -1,1 +1,0 @@
-export function renderRelatorios(el) { el.innerHTML = '<h2>Relatórios</h2>'; }

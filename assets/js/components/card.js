@@ -1,1 +1,0 @@
-export const card = (t, b) => `<div class='card'><h3>${t}</h3>${b}</div>`;

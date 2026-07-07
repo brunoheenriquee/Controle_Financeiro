@@ -1,1 +1,0 @@
-export async function post(endpoint, data) { console.log(endpoint, data); }

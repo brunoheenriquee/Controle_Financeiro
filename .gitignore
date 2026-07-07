@@ -2,7 +2,7 @@
 node_modules/
 
 # Dist folder for deploy
-/dist/
+
 
 # Backup created by cleanup
 backup_root_before_cleanup/

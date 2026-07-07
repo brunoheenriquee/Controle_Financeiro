@@ -1,0 +1,1 @@
+export function renderCartoes(el) { el.innerHTML = '<h2>Cartões</h2>'; }

@@ -7,5 +7,4 @@ main = "./worker.js"
 site = { bucket = "./dist" }
 
 [build]
-command = "npm run build"
-watch_dir = "/dist"
+command = ""

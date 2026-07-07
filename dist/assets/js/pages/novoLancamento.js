@@ -1,0 +1,1 @@
+export function renderNovoLancamento(el) { el.innerHTML = '<h2>Novo Lançamento</h2>'; }

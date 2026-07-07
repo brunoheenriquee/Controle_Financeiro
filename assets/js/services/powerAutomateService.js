@@ -2,7 +2,12 @@ import { storage } from '../storage.js';
 
 export class PowerAutomateService {
   constructor(baseUrl = null) {
-    this.baseUrl = baseUrl || storage.get('powerAutomateUrl') || '';
+    this.baseUrl = this.normalizeUrl(baseUrl || storage.get('powerAutomateUrl') || '');
+  }
+
+  normalizeUrl(url) {
+    if (!url) return '';
+    return url.trim().replace(/\/+$/, '');
   }
 
   isConfigured() {
@@ -10,13 +15,19 @@ export class PowerAutomateService {
   }
 
   setBaseUrl(url) {
-    this.baseUrl = url;
-    storage.set('powerAutomateUrl', url);
+    const normalized = this.normalizeUrl(url);
+    this.baseUrl = normalized;
+    storage.set('powerAutomateUrl', normalized);
+  }
+
+  clearBaseUrl() {
+    this.baseUrl = '';
+    storage.remove('powerAutomateUrl');
   }
 
   async request(method, endpoint, body = null) {
     if (!this.baseUrl) {
-      return null;
+      throw new Error('Power Automate não configurado');
     }
 
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
@@ -26,7 +37,8 @@ export class PowerAutomateService {
     });
 
     if (!response.ok) {
-      throw new Error(`Falha ao consumir endpoint ${endpoint}`);
+      const message = await response.text();
+      throw new Error(`Falha ao consumir endpoint ${endpoint}: ${message || response.statusText}`);
     }
 
     const contentType = response.headers.get('content-type') || '';

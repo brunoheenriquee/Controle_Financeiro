@@ -50,6 +50,41 @@ button[type="submit"] {
   border-radius: 12px;
 }
 
+.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(15,23,42,0.12);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.config-card label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.config-feedback {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.config-feedback[data-status="success"] {
+  color: var(--success, #0f766e);
+}
+
+.config-feedback[data-status="error"] {
+  color: var(--danger, #b91c1c);
+}
+
+.config-feedback[data-status="info"] {
+  color: var(--muted);
+}
+
 @media (min-width: 700px) {
   #app { max-width: 1024px; margin: 0 auto; }
 }
@@ -120,3 +155,8 @@ footer { padding: 0.5rem 0.6rem; background: #fff; border-top: 1px solid rgba(15
 .r-value{ font-weight:700 }
 
 @media(min-width:700px){ .layout-grid{ grid-template-columns:1fr 380px; align-items:start } }
+
+.dashboard-grid{ display:grid; gap:1rem; grid-template-columns:1fr }
+.dashboard-metric{ background:rgba(15,23,42,0.04); padding:1rem; border-radius:14px; display:flex; flex-direction:column; gap:0.35rem }
+.metric-label{ font-size:0.85rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.02em }
+@media(min-width:700px){ .dashboard-grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }

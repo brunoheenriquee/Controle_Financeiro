@@ -1,1 +1,1 @@
-export function renderHistorico(el){el.innerHTML='<h2>Histórico</h2>';}
+export function renderHistorico(el) { el.innerHTML = '<h2>Histórico</h2>'; }

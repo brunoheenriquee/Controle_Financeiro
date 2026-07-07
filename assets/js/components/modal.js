@@ -1,1 +1,1 @@
-export function openModal(){}
+export function openModal() { }

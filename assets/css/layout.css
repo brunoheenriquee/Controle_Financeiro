@@ -1,1 +1,15 @@
-body{margin:0;font-family:Arial;background:var(--bg)}#app{min-height:100vh}.card{background:var(--card);padding:1rem;border-radius:var(--radius)}
+body {
+    margin: 0;
+    font-family: Arial;
+    background: var(--bg)
+}
+
+#app {
+    min-height: 100vh
+}
+
+.card {
+    background: var(--card);
+    padding: 1rem;
+    border-radius: var(--radius)
+}

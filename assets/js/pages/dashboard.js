@@ -1,1 +1,1 @@
-export function renderDashboard(el){el.innerHTML='<h2>Dashboard</h2>';}
+export function renderDashboard(el) { el.innerHTML = '<h2>Dashboard</h2>'; }

@@ -1,1 +1,1 @@
-export const navbar=()=>`<nav>🏠 📋 ➕ 📊 ⚙️</nav>`;
+export const navbar = () => `<nav>🏠 📋 ➕ 📊 ⚙️</nav>`;

@@ -1,1 +1,1 @@
-export function renderConfiguracoes(el){el.innerHTML='<h2>Configurações</h2>';}
+export function renderConfiguracoes(el) { el.innerHTML = '<h2>Configurações</h2>'; }

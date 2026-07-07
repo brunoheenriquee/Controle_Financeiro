@@ -1,1 +1,1 @@
-import {navbar} from '../components/navbar.js';export function renderHome(el){el.innerHTML=`<h1>FinanceHub365</h1><div class='card'>Saldo</div>${navbar()}`;}
+import { navbar } from '../components/navbar.js'; export function renderHome(el) { el.innerHTML = `<h1>FinanceHub365</h1><div class='card'>Saldo</div>${navbar()}`; }

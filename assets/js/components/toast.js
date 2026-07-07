@@ -1,1 +1,1 @@
-export function toast(msg){alert(msg)}
+export function toast(msg) { alert(msg) }

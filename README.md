@@ -24,25 +24,26 @@ Projeto dedicado à criação de um controle financeiro mobile-first, com integr
 
 ## Deploy no Cloudflare Pages
 
-O projeto agora foi reestruturado para publicar diretamente a pasta `dist/` no Cloudflare Pages.
+Este projeto foi reestruturado para funcionar como um site estático no Cloudflare Pages.
 
-- A build step usa o script em `scripts/build-static.js` para garantir que o conteúdo estático seja publicado a partir de `dist/`.
+- O build gera ou usa a pasta `dist/` contendo `index.html`, `assets/`, `manifest.json` e `sw.js`.
 - No painel do Cloudflare Pages, configure:
   - Build command: `npm run build`
   - Build output directory: `dist`
-- O arquivo `wrangler.toml` foi alinhado para apontar o bucket estático para `./dist`.
+- Não é necessário usar `worker.js` nem `site.bucket` para um Pages estático.
+- O arquivo `wrangler.toml` agora contém apenas a configuração Pages:
 
-Exemplo local para gerar e publicar:
-
-```powershell
-# build locally (optional, script already exists)
-npm run build
-
-# add and push dist
-git add dist
-git commit -m "Add built static site for direct deploy"
-git push
+```toml
+name = "controle-financeiro"
+pages_build_output_dir = "./dist"
 ```
 
-After pushing, trigger your Cloudflare deployment; no remote Node build will be required.
+Exemplo local para gerar e publicar via CLI:
+
+```powershell
+npm run build
+npm run deploy:pages
+```
+
+Se preferir usar apenas o painel do Pages, mantenha a configuração acima e não defina um deploy command extra.
 

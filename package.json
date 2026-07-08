@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "build": "node ./scripts/build-static.js"
+    "build": "node ./scripts/build-static.js",
+    "deploy:pages": "npx wrangler pages publish dist --project-name controle-financeiro"
   }
 }

@@ -1,11 +1,2 @@
 name = "controle-financeiro"
-type = "javascript"
-account_id = "38016019e2c5a2fb20dfe886af87ac62"
-workers_dev = true
-compatibility_date = "2026-07-07"
-main = "./worker.js"
-site = { bucket = "./dist" }
 pages_build_output_dir = "./dist"
-
-[build]
-command = "npm run build"

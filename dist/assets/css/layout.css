@@ -137,7 +137,7 @@ footer { padding: 0.5rem 0.6rem; background: #fff; border-top: 1px solid rgba(15
 /* Modal */
 #app-modal-root .modal-backdrop{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(2,6,23,0.45); z-index:9999 }
 #app-modal-root .modal-content{ background:var(--surface); padding:1rem; width:92%; max-width:540px; border-radius:14px; box-shadow:0 18px 50px rgba(2,6,23,0.12); position:relative }
-#app-modal-root .modal-close-icon{ position:absolute; right:12px; top:8px; background:transparent; border:none; font-size:1.1rem; color:var(--muted) }
+#app-modal-root .modal-close-icon{ position:absolute; top:1rem; right:1rem; display:flex; align-items:center; justify-content:center; width:28px; height:28px; background:transparent; border:none; font-size:1.1rem; color:var(--muted); cursor:pointer }
 #app-modal-root .modal-actions{ display:flex; gap:0.75rem; justify-content:flex-end; margin-top:1rem }
 #app-modal-root .modal-actions .modal-cancel{ padding:0.8rem 1rem; border:1px solid rgba(15,23,42,0.08); background:transparent; color:var(--muted); border-radius:10px; font-weight:600 }
 #app-modal-root .modal-actions .modal-save{ padding:0.8rem 1rem; border:none; background:var(--primary); color:#fff; border-radius:10px; font-weight:600 }

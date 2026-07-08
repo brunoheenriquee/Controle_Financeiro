@@ -1,1 +1,0 @@
-export function renderSobre(el) { el.innerHTML = '<h2>Sobre</h2>'; }

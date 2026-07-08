@@ -34,7 +34,7 @@ export async function renderDashboard(el) {
         <h2>Visão geral</h2>
         <div class="dashboard-grid">
           <div class="dashboard-metric">
-            <span class="metric-label">Total de lançamentos</span>
+            <span class="metric-label" style="font-size: 0.55rem;">Total de lançamentos</span>
             <strong>${resumo.total || 0}</strong>
           </div>
           <div class="dashboard-metric">

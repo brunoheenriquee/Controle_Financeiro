@@ -2,14 +2,12 @@ import { renderHome } from './pages/home.js';
 import { renderHistorico } from './pages/historico.js';
 import { renderDashboard } from './pages/dashboard.js';
 import { renderConfiguracoes } from './pages/configuracoes.js';
-import { renderCategorias } from './pages/categorias.js';
 
 const routes = {
   home: renderHome,
   historico: renderHistorico,
   dashboard: renderDashboard,
   configuracoes: renderConfiguracoes,
-  categorias: renderCategorias
 };
 
 export async function router() {

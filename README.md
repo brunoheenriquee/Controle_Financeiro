@@ -22,28 +22,39 @@ Projeto dedicado à criação de um controle financeiro mobile-first, com integr
 4. A planilha atualiza dashboards e resumos.
 5. O app pode consultar o resumo via endpoint do Power Automate.
 
-## Deploy no Cloudflare Pages
+## Deploy estático no Netlify
 
-Este projeto foi reestruturado para funcionar como um site estático no Cloudflare Pages.
+Este projeto agora está configurado para rodar como um site estático no Netlify.
 
 - O build gera ou usa a pasta `dist/` contendo `index.html`, `assets/`, `manifest.json` e `sw.js`.
-- No painel do Cloudflare Pages, configure:
-  - Build command: `npm run build`
-  - Build output directory: `dist`
-- Não é necessário usar `worker.js` nem `site.bucket` para um Pages estático.
-- O arquivo `wrangler.toml` agora contém apenas a configuração Pages:
+- O Netlify detecta o deploy pelo arquivo `netlify.toml`.
+- As configurações do Netlify já estão definidas em `netlify.toml`:
 
 ```toml
-name = "controle-financeiro"
-pages_build_output_dir = "./dist"
+[build]
+  command = "npm run build"
+  publish = "dist"
 ```
 
-Exemplo local para gerar e publicar via CLI:
+### Como publicar
+
+Opção 1: usar o painel do Netlify
+
+1. Conecte seu repositório GitHub/GitLab/Bitbucket ao Netlify.
+2. Defina o build command: `npm run build`
+3. Defina o publish directory: `dist`
+4. Salve e implante.
+
+Opção 2: usar a CLI do Netlify
 
 ```powershell
 npm run build
-npm run deploy:pages
+npx netlify deploy --prod --dir=dist
 ```
 
-Se preferir usar apenas o painel do Pages, mantenha a configuração acima e não defina um deploy command extra.
+> Se você usar a CLI, instale o Netlify CLI globalmente ou execute com `npx`.
+
+### Observação
+
+Este projeto agora é um site estático puro. O `worker.js` e a configuração do Cloudflare não são necessários para o deploy no Netlify.
 

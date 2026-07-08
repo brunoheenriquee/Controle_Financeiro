@@ -1,20 +1,21 @@
-import { FinanceService } from '../services/financeService.js';
-import { PowerAutomateService } from '../services/powerAutomateService.js';
-import { storage } from '../storage.js';
+import { SupabaseService } from '../services/supabaseService.js';
 import { currency } from '../utils.js';
 
 export async function renderDashboard(el) {
-  const financeService = new FinanceService(storage);
-  const powerAutomateService = new PowerAutomateService();
-  const resumo = powerAutomateService.isConfigured()
-    ? await powerAutomateService.getResumo()
-    : financeService.getResumo();
+  const supabaseService = new SupabaseService();
+  let resumo = { receitas: 0, despesas: 0, saldo: 0, total: 0 };
+  
+  try {
+    resumo = await supabaseService.getResumo();
+  } catch (error) {
+    console.error('Erro ao carregar resumo:', error);
+  }
 
   el.innerHTML = `
     <section class="layout-grid">
       <div class="card summary-card">
         <h2>Dashboard</h2>
-        <p class="muted">${powerAutomateService.isConfigured() ? 'Resumo via Power Automate' : 'Resumo local'}</p>
+        <p class="muted">Resumo em tempo real</p>
         <div class="summary-values">
           <div>
             <strong>Saldo</strong>

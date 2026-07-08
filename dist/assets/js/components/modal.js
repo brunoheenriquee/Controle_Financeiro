@@ -1,5 +1,4 @@
-import { FinanceService } from '../services/financeService.js';
-import { PowerAutomateService } from '../services/powerAutomateService.js';
+import { SupabaseService } from '../services/supabaseService.js';
 import { storage } from '../storage.js';
 import { router } from '../router.js';
 import { categories } from '../constants/categories.js';
@@ -45,7 +44,6 @@ export function openNewLancamentoModal() {
 		ev.preventDefault();
 		const data = Object.fromEntries(new FormData(form));
 		const payload = {
-			id: crypto.randomUUID(),
 			data: data.data || new Date().toISOString().slice(0, 10),
 			valor: Number(data.valor),
 			tipo: data.tipo,
@@ -53,15 +51,10 @@ export function openNewLancamentoModal() {
 			observacao: data.observacao || ''
 		};
 
-		const pa = new PowerAutomateService();
-		const fs = new FinanceService(storage);
+		const supabaseService = new SupabaseService();
 
 		try {
-			if (pa.isConfigured()) {
-				await pa.createLancamento(payload);
-			} else {
-				fs.addLancamento(payload);
-			}
+			await supabaseService.createLancamento(payload);
 			closeModal();
 			router();
 		} catch (e) {

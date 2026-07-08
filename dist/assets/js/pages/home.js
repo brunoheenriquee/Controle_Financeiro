@@ -1,21 +1,17 @@
-import { FinanceService } from '../services/financeService.js';
-import { PowerAutomateService } from '../services/powerAutomateService.js';
-import { storage } from '../storage.js';
+import { SupabaseService } from '../services/supabaseService.js';
 import { currency } from '../utils.js';
 
 export async function renderHome(el) {
-  const financeService = new FinanceService(storage);
-  const powerAutomateService = new PowerAutomateService();
+  const supabaseService = new SupabaseService();
+  let resumo = { receitas: 0, despesas: 0, saldo: 0, total: 0 };
+  let lancamentos = [];
 
-  el.innerHTML = homeTemplate();
-
-  const resumo = powerAutomateService.isConfigured()
-    ? await powerAutomateService.getResumo()
-    : financeService.getResumo();
-
-  const lancamentos = powerAutomateService.isConfigured()
-    ? await powerAutomateService.listLancamentos()
-    : financeService.getLancamentos().slice().reverse();
+  try {
+    resumo = await supabaseService.getResumo();
+    lancamentos = await supabaseService.listLancamentos(8);
+  } catch (error) {
+    console.error('Erro ao carregar dados:', error);
+  }
 
   const resumoEl = el.querySelector('#resumo');
   const ultimosEl = el.querySelector('#ultimos');
@@ -28,7 +24,7 @@ export async function renderHome(el) {
         <div><strong>Receitas</strong><div class="value">${currency(resumo.receitas || 0)}</div></div>
         <div><strong>Despesas</strong><div class="value">${currency(resumo.despesas || 0)}</div></div>
       </div>
-      <p class="muted">${powerAutomateService.isConfigured() ? 'Sincronizado via Power Automate' : 'Modo local (offline)'}</p>
+      <p class="muted">Sincronizado via Supabase</p>
     `;
   }
 

@@ -32,17 +32,24 @@ export function openNewLancamentoModal() {
 	};
 
 	const form = root.querySelector('#modal-lancamento-form');
+	const tipoInput = root.querySelector('#lancamento-tipo');
+	const categoriaWrapper = root.querySelector('#categoria-wrapper');
+
+	if (tipoInput && categoriaWrapper) {
+		tipoInput.addEventListener('change', () => {
+			categoriaWrapper.classList.toggle('hidden', tipoInput.value !== 'despesa');
+		});
+	}
+
 	form.addEventListener('submit', async (ev) => {
 		ev.preventDefault();
 		const data = Object.fromEntries(new FormData(form));
 		const payload = {
 			id: crypto.randomUUID(),
-			descricao: data.descricao,
 			data: data.data || new Date().toISOString().slice(0, 10),
 			valor: Number(data.valor),
 			tipo: data.tipo,
-			categoria: data.categoria || 'Sem categoria',
-			conta: data.conta || 'Padrão',
+			categoriaId: tipoInput.value === 'despesa' && data.categoria ? Number(data.categoria) : null,
 			observacao: data.observacao || ''
 		};
 
@@ -64,7 +71,7 @@ export function openNewLancamentoModal() {
 
 	// focus first field
 	setTimeout(() => {
-		const input = root.querySelector('#modal-lancamento-form [name="descricao"]');
+		const input = root.querySelector('#modal-lancamento-form [name="data"]');
 		if (input) input.focus();
 	}, 80);
 }
@@ -83,18 +90,18 @@ function modalHtml() {
 				<button class="modal-close-icon" aria-label="Fechar">✕</button>
 				<h3>Novo lançamento</h3>
 				<form id="modal-lancamento-form">
-					<input name='descricao' placeholder='Descrição' required />
 					<input name='data' type='date' required />
 					<input name='valor' type='number' step='0.01' placeholder='Valor' required />
-					<select name='tipo'>
+					<select name='tipo' id='lancamento-tipo'>
 						<option value='receita'>Receita</option>
 						<option value='despesa'>Despesa</option>
 					</select>
-					<select name='categoria'>
-						<option value=''>Selecione uma categoria</option>
-						${categories.map(category => `<option value='${category.id}'>${category.label}</option>`).join('')}
-					</select>
-					<input name='conta' placeholder='Conta' />
+					<div id='categoria-wrapper' class='hidden'>
+						<select name='categoria' id='lancamento-categoria'>
+							<option value=''>Selecione uma categoria</option>
+							${categories.map(category => `<option value='${category.id}'>${category.label}</option>`).join('')}
+						</select>
+					</div>
 					<textarea name='observacao' placeholder='Observação'></textarea>
 					<div class="modal-actions">
 						<button type="button" class="modal-cancel">Cancelar</button>

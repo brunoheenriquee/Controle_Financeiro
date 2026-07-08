@@ -22,15 +22,17 @@ Projeto dedicado à criação de um controle financeiro mobile-first, com integr
 4. A planilha atualiza dashboards e resumos.
 5. O app pode consultar o resumo via endpoint do Power Automate.
 
-## Deploy without remote build (Option 2)
+## Deploy no Cloudflare Pages
 
-If you prefer not to run `npm run build` in the CI/Cloudflare environment, commit the generated `dist/` directory and configure Cloudflare to publish it directly.
+O projeto agora foi reestruturado para publicar diretamente a pasta `dist/` no Cloudflare Pages.
 
-- Commit `dist/` to the repository (the folder contains `index.html`, `assets/`, `manifest.json`, `sw.js`).
-- In Cloudflare Pages or your deploy pipeline, set the Build command to empty and the Publish directory to `dist`.
-- In Wrangler config we already point the site to `./dist` and the build command is empty so `wrangler publish` will not attempt to rebuild.
+- A build step usa o script em `scripts/build-static.js` para garantir que o conteúdo estático seja publicado a partir de `dist/`.
+- No painel do Cloudflare Pages, configure:
+  - Build command: `npm run build`
+  - Build output directory: `dist`
+- O arquivo `wrangler.toml` foi alinhado para apontar o bucket estático para `./dist`.
 
-Example local steps to produce `dist/` and push it:
+Exemplo local para gerar e publicar:
 
 ```powershell
 # build locally (optional, script already exists)

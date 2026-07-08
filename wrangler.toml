@@ -5,6 +5,7 @@ workers_dev = true
 compatibility_date = "2026-07-07"
 main = "./worker.js"
 site = { bucket = "./dist" }
+pages_build_output_dir = "./dist"
 
 [build]
-command = ""
+command = "npm run build"

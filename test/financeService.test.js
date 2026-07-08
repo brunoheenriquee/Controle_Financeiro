@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { FinanceService } from '../assets/js/services/financeService.js';
+import { FinanceService } from '../dist/assets/js/services/financeService.js';
 
 function createStorage(initial = {}) {
   const store = new Map(Object.entries(initial));

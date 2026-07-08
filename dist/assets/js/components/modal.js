@@ -2,6 +2,7 @@ import { FinanceService } from '../services/financeService.js';
 import { PowerAutomateService } from '../services/powerAutomateService.js';
 import { storage } from '../storage.js';
 import { router } from '../router.js';
+import { categories } from '../constants/categories.js';
 
 const ID = 'app-modal-root';
 
@@ -89,7 +90,10 @@ function modalHtml() {
 						<option value='receita'>Receita</option>
 						<option value='despesa'>Despesa</option>
 					</select>
-					<input name='categoria' placeholder='Categoria' />
+					<select name='categoria'>
+						<option value=''>Selecione uma categoria</option>
+						${categories.map(category => `<option value='${category.id}'>${category.label}</option>`).join('')}
+					</select>
 					<input name='conta' placeholder='Conta' />
 					<textarea name='observacao' placeholder='Observação'></textarea>
 					<div class="modal-actions">

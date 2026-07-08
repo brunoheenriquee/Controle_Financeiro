@@ -2,13 +2,21 @@
 <html lang='pt-br'>
 
 <head>
+    <meta name="theme-color" content="#16A34A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Controle Financeiro">
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title>Controle Financeiro</title>
+    <link rel="icon" href="/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap' rel='stylesheet'>
     <link rel='stylesheet' href='./assets/css/variables.css'>
     <link rel='stylesheet' href='./assets/css/layout.css'>
+    <title>Controle Financeiro</title>
 </head>
 
 <body>
@@ -61,6 +69,15 @@
     </footer>
 
     <script type='module' src='./assets/js/app.js'></script>
+    <script src="/pwa.js"></script>
+    <script>
+        if ('serviceWorker' in navigator){
+            window.addEventListener('load', ()=>{
+            navigator.serviceWorker.register('/sw.js');
+        });
+    }
+    </script>
+
 </body>
 
 </html>

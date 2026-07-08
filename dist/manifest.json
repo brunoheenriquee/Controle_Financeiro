@@ -1,6 +1,34 @@
 {
-    "name":"FinanceHub365",
-    "short_name":"Controle Financeiro",
-    "display":"standalone",
-    "start_url":"./index.html"
+  "id": "/",
+  "name": "Controle Financeiro",
+  "short_name": "NX",
+  "description": "Controle Financeiro Pessoal",
+
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F8FA",
+  "theme_color": "#16A34A",
+
+  "categories": [
+    "finance",
+    "productivity"
+  ],
+
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

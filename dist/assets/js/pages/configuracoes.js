@@ -18,6 +18,12 @@ export function renderConfiguracoes(el) {
           </div>
         </form>
       </div>
+      <button
+        id="btnInstalar"
+        style="display:none"
+        onclick="instalarAplicativo()">
+        Instalar aplicativo
+      </button>
     </section>
   `;
 }

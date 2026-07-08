@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sem conexão</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f3f3f3;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #16A34A;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>Sem conexão</h2>
+        <p>Não foi possível acessar a internet.</p>
+        <button onclick="location.reload()">
+            Tentar novamente
+        </button>
+    </div>
+</body>
+
+</html>

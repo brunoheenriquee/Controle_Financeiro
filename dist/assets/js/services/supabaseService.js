@@ -41,6 +41,8 @@ export class SupabaseService {
     return (await this.request('GET', endpoint)) || [];
   }
 
+//TODO: ajustar listLancamentos para usar o getCategoriaById para retornar o nome da categoria em vez do ID, ou fazer um join com a tabela de categorias.
+
   async createLancamento(lancamento) {
     const payload = {
       data: lancamento.data,

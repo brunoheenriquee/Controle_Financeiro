@@ -429,7 +429,6 @@ footer {
   border: 1px solid #eef2f7;
   display: flex;
   flex-direction: column;
-  text-overflow: ellipsis;
   gap: 8px;
 
 }
@@ -456,6 +455,11 @@ footer {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+}
+
+.strong {
+  font-weight: 700;
+  text-transform: ellipsis;
 }
 
 * {

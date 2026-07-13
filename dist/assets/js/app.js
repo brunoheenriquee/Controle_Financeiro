@@ -19,8 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		const route = anchor.dataset.route;
 		if (route) {
 			location.hash = `#${route}`;
-			router();
-			updateActiveNav();
 		}
 	});
 	window.addEventListener('hashchange', () => {

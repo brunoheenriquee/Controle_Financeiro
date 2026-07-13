@@ -16,6 +16,7 @@ export async function router() {
   const hash = (location.hash || '#home').replace('#', '');
   const render = routes[hash] || routes.home;
   try {
+    el.innerHTML = "";
     await render(el);
   } catch (e) {
     el.innerHTML = `<p>Erro ao carregar a página: ${e.message}</p>`;

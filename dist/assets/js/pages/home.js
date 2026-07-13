@@ -2,6 +2,7 @@ import { SupabaseService } from '../services/supabaseService.js';
 import { currency } from '../utils.js';
 
 export async function renderHome(el) {
+  el.innerHTML = homeTemplate();
   const supabaseService = new SupabaseService();
   let resumo = { receitas: 0, despesas: 0, saldo: 0, total: 0 };
   let lancamentos = [];

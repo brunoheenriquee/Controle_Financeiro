@@ -457,11 +457,6 @@ footer {
   }
 }
 
-.strong {
-  font-weight: 700;
-  text-transform: ellipsis;
-}
-
 * {
   min-width: 0;
 }
